@@ -1,0 +1,61 @@
+﻿@model IEnumerable<testeBuscaMarvel.Models.Result>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Busque o personagem desejado</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Nome: @Html.TextBox("SearchString")
+        <input type="submit" value="Pesquisar" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            Nome
+        </th>
+        <th>
+            Descrição
+        </th>
+        <th>
+            Histórias
+        </th>
+        <th>
+            Foto
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null) {
+        foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.historias)
+        </td>
+        <td>
+            <img src=@Html.DisplayFor(modelItem => item.thumbnail.path) />
+        </td>
+    </tr>
+        }
+    }
+
+</table>
